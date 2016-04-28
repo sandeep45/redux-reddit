@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import TopicDropDown from "../components/TopicDropDown.js"
-import { selectTopic } from "../actions/"
+import { selectTopic, fetchPosts } from "../actions/"
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSelect: (topic) => {
-      dispatch(selectTopic(topic))
+      dispatch(selectTopic(topic));
+      dispatch(fetchPosts(topic));
     }
   }
 };
