@@ -33,17 +33,17 @@ export const fetchPosts = (topic) => {
   return (dispatch) => {
     dispatch(requestPosts(topic));
 
-    axios.get(`http://www.reddit.com/r/${topic}.json`).
+    return axios.get(`http://www.reddit.com/r/${topic}.json`).
       then(
         response => {
           const data = response.data.data;
-          console.log(data);
+          // console.log(data);
           const posts = data.children.map( post => post.data.title)
-          console.log(posts);
+          // console.log(posts);
           dispatch(receivePosts(topic, posts))
         },
         response => {
-          console.log("error getting data: , ", response)
+          // console.log("error getting data: , ", response)
           dispatch(receivePosts(topic, []))
         }
       );
